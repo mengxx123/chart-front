@@ -1,0 +1,29 @@
+html,
+body {
+	height: 100%;
+}
+.layout-header {
+	border-bottom: 1px solid #ccc;
+}
+.layout-body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	overflow: hidden;
+}
+.layout-nav {
+	position: absolute;
+	left: 0;
+}
+table{
+	border-collapse: collapse;
+}
+th, td{
+	padding: 4px;
+}
+
+fieldset{
+	border: 1px solid #aaa;
+}
