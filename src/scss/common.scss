@@ -1,0 +1,18 @@
+html,
+body,
+#app,
+.page {
+    height: 100%;
+}
+.page-footer {
+    padding: 40px 0;
+    color: #fff;
+    text-align: center;
+    background-color: #424264;
+    a {
+        color: #fff;
+    }
+    .links {
+        margin-bottom: 16px;
+    }
+}
