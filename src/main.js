@@ -3,9 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 全部加载
+import YunserUI from 'yunser-ui-vue'
+import 'yunser-ui-vue/dist/yunser-ui.css'
 import ui from './components'
-
 import './scss/main.scss'
+
+// 全部加载
+Vue.use(YunserUI)
 
 Vue.config.productionTip = false
 

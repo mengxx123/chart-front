@@ -1,29 +1,33 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/components/Home'
-import Chart from '@/components/Chart'
-import Bar from '@/components/Bar'
-import Radar from '@/components/Radar'
-import Line from '@/components/Line'
-import Pie from '@/components/Pie'
-import Pie2 from '@/components/Pie2'
-import Gauge from '@/components/Gauge'
-import Scatter from '@/components/Scatter'
-import Funnel from '@/components/Funnel'
-import Map from '@/components/Map'
-import Map2 from '@/components/Map2'
-import Pictograph from '@/components/Pictograph'
-import Venn from '@/components/Venn'
-
-import Help from '@/components/Help'
-import About from '@/components/About'
+const Home = resolve => require(['@/views/Home'], resolve)
+const Chart = resolve => require(['@/views/Chart'], resolve)
+const ChartDetail = resolve => require(['@/views/ChartDetail'], resolve)
+const Radar = resolve => require(['@/views/Radar'], resolve)
+const Line = resolve => require(['@/views/Line'], resolve)
+const Pie = resolve => require(['@/views/Pie'], resolve)
+const Pie2 = resolve => require(['@/views/Pie2'], resolve)
+const Gauge = resolve => require(['@/views/Gauge'], resolve)
+const Scatter = resolve => require(['@/views/Scatter'], resolve)
+const Funnel = resolve => require(['@/views/Funnel'], resolve)
+const Map = resolve => require(['@/views/Map'], resolve)
+const Map2 = resolve => require(['@/views/Map2'], resolve)
+const Pictograph = resolve => require(['@/views/Pictograph'], resolve)
+const Venn = resolve => require(['@/views/Venn'], resolve)
+const Help = resolve => require(['@/views/Help'], resolve)
+const About = resolve => require(['@/views/About'], resolve)
 
 Vue.use(Router)
 
 let routes = [
     {
         path: '/',
+        redirect: '/chart'
+        // component: Home
+    },
+    {
+        path: '/home',
         component: Home
     },
     {
@@ -31,12 +35,12 @@ let routes = [
         component: Chart
     },
     {
-        path: '/about',
-        component: About
+        path: '/chart/:type',
+        component: ChartDetail
     },
     {
-        path: '/bar',
-        component: Bar
+        path: '/about',
+        component: About
     },
     {
         path: '/radar',

@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-help">
+    <my-page class="page page-help">
         <ui-header></ui-header>
         <div class="layout-body">
             <div class="container">
@@ -11,7 +11,7 @@
             </div>
         </div>
         <ui-footer></ui-footer>
-    </div>
+    </my-page>
 </template>
 
 <script>
