@@ -2,7 +2,7 @@
     <div class="page page-about">
         <ui-header></ui-header>
         <div class="page-body">
-            <div class="container">
+            <div class="container container-main">
                 <article class="article">
                     <h1>关于</h1>
                     <div>云设图+ 是一个在线图表编辑器，只需要简单的三步：导入数据，选择模板，设置参数即可创建强大的交互性图表，图表中所有的内容都可以通过可视化操作来配置或修改，真正做到所见即所得！</div>

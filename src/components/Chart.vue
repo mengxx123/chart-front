@@ -1,88 +1,91 @@
 <template>
-    <div class="layout-body">
-        <div class="container">
-            <ul class="chart-list">
-                <li class="chart-item">
-                    <router-link to="/bar">
-                        <img class="chart-img" src="/static/img/bar1.png">
-                        <i class="icon icon-bar"></i>
-                        <div class="chart-name">柱状图</div>
-                        <div class="chart-desc">标准柱状图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/line">
-                        <i class="icon icon-line"></i>
-                        <div class="chart-name">折线图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/pie">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">标准饼图</div>
-                        <div class="chart-desc">基本的饼图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/pie2">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">嵌套饼图</div>
-                        <div class="chart-desc">由两个（或多个）饼图嵌套而成</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/radar">
-                        <i class="icon icon-radar"></i>
-                        <div class="chart-name">雷达图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/map">
-                        <i class="icon icon-radar"></i>
-                        <div class="chart-name">地图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/scatter">
-                        <i class="icon icon-radar"></i>
-                        <div class="chart-name">散点图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/venn">
-                        <i class="icon icon-radar"></i>
-                        <div class="chart-name">维恩图</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/funnel">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">漏斗图</div>
-                        <div class="chart-desc"></div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/map">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">地图</div>
-                        <div class="chart-desc"></div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/map2">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">地图</div>
-                        <div class="chart-desc">pm2.5</div>
-                    </router-link>
-                </li>
-                <li class="chart-item">
-                    <router-link to="/pictograph">
-                        <i class="icon icon-pie"></i>
-                        <div class="chart-name">象形图</div>
-                        <div class="chart-desc">pm2.5</div>
-                    </router-link>
-                </li>
-            </ul>
+    <div class="page page-chart">
+        <ui-header></ui-header>
+        <div class="layout-body">
+            <div class="container">
+                <ul class="chart-list">
+                    <li class="chart-item">
+                        <router-link to="/bar">
+                            <img class="chart-img" src="/static/img/bar1.png">
+                            <i class="icon icon-bar"></i>
+                            <div class="chart-name">柱状图</div>
+                            <div class="chart-desc">标准柱状图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/line">
+                            <i class="icon icon-line"></i>
+                            <div class="chart-name">折线图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/pie">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">标准饼图</div>
+                            <div class="chart-desc">基本的饼图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/pie2">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">嵌套饼图</div>
+                            <div class="chart-desc">由两个（或多个）饼图嵌套而成</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/radar">
+                            <i class="icon icon-radar"></i>
+                            <div class="chart-name">雷达图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/map">
+                            <i class="icon icon-radar"></i>
+                            <div class="chart-name">地图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/scatter">
+                            <i class="icon icon-radar"></i>
+                            <div class="chart-name">散点图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/venn">
+                            <i class="icon icon-radar"></i>
+                            <div class="chart-name">维恩图</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/funnel">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">漏斗图</div>
+                            <div class="chart-desc"></div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/map">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">地图</div>
+                            <div class="chart-desc"></div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/map2">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">地图</div>
+                            <div class="chart-desc">pm2.5</div>
+                        </router-link>
+                    </li>
+                    <li class="chart-item">
+                        <router-link to="/pictograph">
+                            <i class="icon icon-pie"></i>
+                            <div class="chart-name">象形图</div>
+                            <div class="chart-desc">pm2.5</div>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>

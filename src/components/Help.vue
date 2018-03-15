@@ -1,12 +1,16 @@
 <template>
-    <div class="layout-body">
-        <div class="container">
-            <article class="article">
-                <h1>帮助</h1>
-                <h2></h2>
-                <p></p>
-            </article>
+    <div class="page page-help">
+        <ui-header></ui-header>
+        <div class="layout-body">
+            <div class="container">
+                <article class="article">
+                    <h1>帮助</h1>
+                    <h2></h2>
+                    <p></p>
+                </article>
+            </div>
         </div>
+        <ui-footer></ui-footer>
     </div>
 </template>
 

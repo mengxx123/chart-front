@@ -1,5 +1,19 @@
 @import "var";
 
 .page-about {
-
+    background: #eeeaea;
+    .container {
+        width: 960px;
+        margin: 0 auto;
+    }
+    .article {
+        padding: 40px 16px;
+        background-color: #fff;
+        box-shadow: 0 3px 5px #ccc;
+        h1 {
+            margin-bottom: 24px;
+            font-size: 22px;
+            text-align: center;
+        }
+    }
 }

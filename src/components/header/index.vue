@@ -49,15 +49,12 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/help">帮助</router-link>
                     </li>
-                    <li class="nav-item navbar-form">
-                        <button id="quick-help" class="btn btn-info" href="#">快速导航</button>
-                    </li>
                 </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://tool.yunser.com" target="_blank">更多工具</a>
-                    </li>
-                </ul>
+                <!--<ul class="nav navbar-nav pull-right">-->
+                    <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" href="http://tool.yunser.com" target="_blank">更多工具</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
             </div>
         </div>
     </header>
