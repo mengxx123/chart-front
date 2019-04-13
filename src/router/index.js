@@ -3,6 +3,10 @@ import Router from 'vue-router'
 
 const Home = resolve => require(['@/views/Home'], resolve)
 const Chart = resolve => require(['@/views/Chart'], resolve)
+
+const Coin = resolve => require(['@/views/Coin'], resolve)
+const Prime = resolve => require(['@/views/Prime'], resolve)
+
 const ChartDetail = resolve => require(['@/views/ChartDetail'], resolve)
 const Radar = resolve => require(['@/views/Radar'], resolve)
 const Line = resolve => require(['@/views/Line'], resolve)
@@ -25,6 +29,14 @@ let routes = [
         path: '/',
         redirect: '/chart'
         // component: Home
+    },
+    {
+        path: '/coin',
+        component: Coin
+    },
+    {
+        path: '/prime',
+        component: Prime
     },
     {
         path: '/home',

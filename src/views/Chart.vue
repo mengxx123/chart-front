@@ -1,16 +1,7 @@
 <template>
-    <my-page title="图表">
+    <my-page title="图表" :page="page">
+        <app-list :data="groups" />
         <ul class="chart-list">
-            <li class="chart-item" v-for="item in list">
-                <router-link class="link" :to="item.to">
-                    <!-- <img class="chart-img" :src="item.image"> -->
-                    <i :class="['icon', 'icon-' + item.icon]"></i>
-                    <div class="chart-name">{{ item.name }}</div>
-                    <div class="chart-desc">{{ item.description }}</div>
-                </router-link>
-            </li>
-
-            
             <!-- <li class="chart-item">
                 <router-link to="/line">
                     <i class="icon icon-line"></i>
@@ -91,31 +82,104 @@
     export default {
         data () {
             return {
-                list: [
+                groups: [
                     {
-                        name: '柱状图',
-                        description: '标准柱状图',
-                        image: '/static/img/bar1.png',
-                        to: '/chart/bar',
-                        icon: 'bar'
+                        name: '条码',
+                        apps: [
+                            {
+                                name: '二维码',
+                                desc: '',
+                                icon: '/static/img/qrcode.svg',
+                                to: 'xxx',
+                                href: 'https://qrcode.yunser.com/',
+                                target: '_blank'
+                            },
+                            {
+                                name: '条形码',
+                                desc: '',
+                                icon: '/static/img/barcode.svg',
+                                to: 'xxx',
+                                href: 'https://barcode.yunser.com/',
+                                target: '_blank'
+                            }
+                        ]
                     },
                     {
-                        name: '折线图',
-                        description: '',
-                        image: '/static/img/bar1.png',
-                        to: '/chart/line',
-                        icon: 'line'
+                        name: '分类',
+                        apps: [
+                            {
+                                name: '词云',
+                                desc: '',
+                                icon: '/static/img/word_cloud.svg',
+                                to: 'xxx',
+                                href: 'https://wordcloud.yunser.com/',
+                                target: '_blank'
+                            },
+                            {
+                                name: '条形图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: 'xxx',
+                                href: 'https://bar.yunser.com/',
+                                target: '_blank'
+                            },
+                            {
+                                name: '拓扑图',
+                                desc: '',
+                                icon: '/static/img/chart_functional.svg',
+                                to: 'xxx',
+                                href: 'https://topo.yunser.com/',
+                                target: '_blank'
+                            },
+                            {
+                                name: 'UML 图',
+                                desc: '',
+                                icon: '/static/img/chart_functional.svg',
+                                to: 'xxx',
+                                href: 'https://d3.yunser.com/',
+                                target: '_blank'
+                            },
+                            {
+                                name: '柱状图',
+                                desc: '标准柱状图',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/bar'
+                            },
+                            {
+                                name: '折线图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/line'
+                            },
+                            // {
+                            //     name: '标准饼图',
+                            //     description: '基本的饼图',
+                            //     image: '/static/img/bar1.png',
+                            //     to: '/chart/pie',
+                            //     icon: 'pie'
 
-                    },
-                    // {
-                    //     name: '标准饼图',
-                    //     description: '基本的饼图',
-                    //     image: '/static/img/bar1.png',
-                    //     to: '/chart/pie',
-                    //     icon: 'pie'
-
-                    // }
-                ]
+                            // }
+                        ]
+                    }
+                ],
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'search',
+                            href: 'https://search.yunser.com?utm_source=chart',
+                            target: '_blank',
+                            title: '搜索'
+                        },
+                        {
+                            type: 'icon',
+                            icon: 'apps',
+                            href: 'https://app.yunser.com?utm_source=chart',
+                            target: '_blank',
+                            title: '应用'
+                        }
+                    ]
+                }
             }
         },
         mounted: function () {
