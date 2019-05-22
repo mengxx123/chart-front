@@ -8,19 +8,17 @@ const Coin = resolve => require(['@/views/Coin'], resolve)
 const Prime = resolve => require(['@/views/Prime'], resolve)
 
 const ChartDetail = resolve => require(['@/views/ChartDetail'], resolve)
-const Radar = resolve => require(['@/views/Radar'], resolve)
+const ChartRadar = resolve => require(['@/views/ChartRadar'], resolve)
+const ChartScatter = resolve => require(['@/views/ChartScatter'], resolve)
+const ChartPie = resolve => require(['@/views/ChartPie'], resolve)
+const ChartFunnel = resolve => require(['@/views/ChartFunnel'], resolve)
 const Line = resolve => require(['@/views/Line'], resolve)
-const Pie = resolve => require(['@/views/Pie'], resolve)
 const Pie2 = resolve => require(['@/views/Pie2'], resolve)
 const Gauge = resolve => require(['@/views/Gauge'], resolve)
-const Scatter = resolve => require(['@/views/Scatter'], resolve)
-const Funnel = resolve => require(['@/views/Funnel'], resolve)
 const Map = resolve => require(['@/views/Map'], resolve)
 const Map2 = resolve => require(['@/views/Map2'], resolve)
 const Pictograph = resolve => require(['@/views/Pictograph'], resolve)
 const Venn = resolve => require(['@/views/Venn'], resolve)
-const Help = resolve => require(['@/views/Help'], resolve)
-const About = resolve => require(['@/views/About'], resolve)
 
 Vue.use(Router)
 
@@ -47,20 +45,24 @@ let routes = [
         component: Chart
     },
     {
+        path: '/chart/radar',
+        component: ChartRadar
+    },
+    {
+        path: '/chart/pie',
+        component: ChartPie
+    },
+    {
+        path: '/chart/funnel',
+        component: ChartFunnel
+    },
+    {
+        path: '/chart/scatter',
+        component: ChartScatter
+    },
+    {
         path: '/chart/:type',
         component: ChartDetail
-    },
-    {
-        path: '/about',
-        component: About
-    },
-    {
-        path: '/radar',
-        component: Radar
-    },
-    {
-        path: '/help',
-        component: Help
     },
     {
         path: '/line',
@@ -71,24 +73,12 @@ let routes = [
         component: Gauge
     },
     {
-        path: '/pie',
-        component: Pie
-    },
-    {
         path: '/pie2',
         component: Pie2
     },
     {
-        path: '/scatter',
-        component: Scatter
-    },
-    {
         path: '/venn',
         component: Venn
-    },
-    {
-        path: '/funnel',
-        component: Funnel
     },
     {
         path: '/map',

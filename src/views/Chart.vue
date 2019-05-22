@@ -151,6 +151,30 @@
                                 icon: '/static/img/chart_bar.svg',
                                 to: '/chart/line'
                             },
+                            {
+                                name: '雷达图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/radar'
+                            },
+                            {
+                                name: '散点图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/scatter'
+                            },
+                            {
+                                name: '饼图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/pie'
+                            },
+                            {
+                                name: '漏斗图',
+                                desc: '',
+                                icon: '/static/img/chart_bar.svg',
+                                to: '/chart/funnel'
+                            },
                             // {
                             //     name: '标准饼图',
                             //     description: '基本的饼图',
