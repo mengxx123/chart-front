@@ -184,6 +184,29 @@
 
                             // }
                         ]
+                    },
+                    {
+                        name: '其他',
+                        apps: [
+                            {
+                                name: '投骰子实验',
+                                desc: '',
+                                icon: '/static/img/chart.svg',
+                                to: '/dice',
+                            },
+                            {
+                                name: '抛硬币实验',
+                                desc: '',
+                                icon: '/static/img/chart.svg',
+                                to: '/coin',
+                            },
+                            {
+                                name: '抛硬币实验',
+                                desc: '两个硬币',
+                                icon: '/static/img/chart.svg',
+                                to: '/coin/ex',
+                            },
+                        ]
                     }
                 ],
                 page: {

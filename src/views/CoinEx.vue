@@ -1,40 +1,27 @@
 <template>
-    <my-page title="抛硬币实验" :page="page">
+    <my-page title="抛硬币实验（两个硬币）" :page="page">
         <div class="body">
             <div class="coin" :style="{transform: `rotateY(${deg}deg)`}">
                 {{ result ? '正面' : '反面' }}
             </div>
             <div>
-                <ui-text-field class="input" v-model.number="times" type="number" label="抛硬币次数" />
+                <ui-text-field class="input" v-model="times" label="次数" />
                 <br>
-                <ui-text-field class="input" v-model.number="labCount" type="number" label="实验次数" />
-                <br>
-                <ui-raised-button class="btn" primary label="开始实验" @click="retry" />
+                <ui-raised-button class="btn" primary label="抛硬币" @click="retry" />
                 <ui-raised-button secondary label="重置" @click="reset" />
             </div>
             <!-- <div class="count">共抛了 <span class="total">{{ total }}</span> 次</div> -->
         </div>
         <table class="table">
             <tr>
-                <th>实验编号</th>
-                <th>正面频数</th>
-                <th>正面频率</th>
-                <th>反面次数</th>
-                <th>反面频率</th>
+                <th>结果</th>
+                <th>频数</th>
+                <th>频率</th>
             </tr>
-            <tr v-for="item, index in allResult">
-                <td>{{ index + 1 }}</td>
-                <td>{{ item.headCount }}</td>
-                <td>{{ item.headRate }}</td>
-                <td>{{ item.tailCount }}</td>
-                <td>{{ item.tailRate }}</td>
-            </tr>
-            <tr>
-                <td>平均</td>
-                <td>{{ avg.headCount }}</td>
-                <td>{{ avg.headRate }}</td>
-                <td>{{ avg.tailCount }}</td>
-                <td>{{ avg.tailRate }}</td>
+            <tr v-for="item in results">
+                <td>{{ item.result }}</td>
+                <td>{{ item.number }}</td>
+                <td>{{ item.rate }}</td>
             </tr>
         </table>
         <div class="chart" id="box"></div>
@@ -45,33 +32,28 @@
     export default {
         data () {
             return {
-                labCount: 3,
                 total: 0,
                 deg: 0,
                 times: 100,
                 result: true,
-                allResult: [
-                    {
-                        headCount: 4,
-                        headRate: 0.4,
-                        tailCount: 6,
-                        tailRate: 0.6,
-                    }
-                ],
-                avg: {
-                    headCount: 0,
-                    headRate: 0,
-                    tailCount: 0,
-                    tailRate: 0,
-                },
                 results: [
                     {
-                        result: '正面',
+                        result: '正面、正面',
                         number: 0,
                         rate: 0
                     },
                     {
-                        result: '反面',
+                        result: '正面、反面',
+                        number: 0,
+                        rate: 0
+                    },
+                    {
+                        result: '反面、正面',
+                        number: 0,
+                        rate: 0
+                    },
+                    {
+                        result: '反面、反面',
                         number: 0,
                         rate: 0
                     },
@@ -113,7 +95,7 @@
             this.head = 0
             this.chart = echarts.init(document.getElementById("box"))
             this.updateChart()
-            this.debug()
+            // this.debug()
         },
         methods: {
             debug() {
@@ -122,76 +104,55 @@
             reset() {
                 this.statData = []
                 this.total = this.head = 0
-                this.allResult = []
-                this.avg = {
-                    headCount: 0,
-                    headRate: 0,
-                    tailCount: 0,
-                    tailRate: 0,
+                for (let i = 0; i < this.results.length; i++) {
+                    this.results[i].number = 0
+                    this.results[i].rate = 0
                 }
-
-                // for (let i = 0; i < this.results.length; i++) {
-                //     this.results[i].number = 0
-                //     this.results[i].rate = 0
-                // }
                 this.updateChart()
             },
             retry(text) {
-                let labCount = this.labCount || 1
-                this.allResult = []
+                this.deg = 0
+                for (let i = 0; i < this.results.length; i++) {
+                    this.results[i].number = 0
+                    this.results[i].rate = 0
+                }
+                this.total = 0
+                this.head = 0
                 this.statData = []
-
-                for (let labIdx = 0; labIdx < labCount; labIdx++) {
-                    let allCount = 0
-                    let headCount = 0
-                    let tailCount = 0
-                    
-
-                    for (let i = 0; i < this.times; i++) {
-                        let isHead = Math.random() > 0.5
-                        if (isHead) {
-                            headCount++
+                for (let i = 0; i < this.times; i++) {
+                    let first = Math.random() > 0.5
+                    let second = Math.random() > 0.5
+                    this.result = Math.random() > 0.5
+                    if (first) {
+                        if (second) {
+                            this.results[0].number++
                         } else {
-                            tailCount++
+                            this.results[1].number++
                         }
-                        allCount++
-                        if (labIdx === 0) {
-                            this.statData.push({
-                                times: this.statData.length + 1,
-                                value: headCount / allCount
-                            })
+                    } else {
+                        if (second) {
+                            this.results[2].number++
+                        } else {
+                            this.results[3].number++
                         }
-                        // console.log
                     }
-                    // for (let i = 0; i < this.results.length; i++) {
-                    //     console.log('rate', this.results[i].number, this.total, this.results[i].number / this.total )
-                    //     this.results[i].rate = this.results[i].number / this.total
+                    // if (this.result) {
+                    //     this.head += 1
+                    //     this.results[0].number++
+                    // } else {
+                    //     this.results[1].number++
                     // }
-
-                    this.allResult.push({
-                        headCount,
-                        headRate: headCount / allCount,
-                        tailCount,
-                        tailRate: tailCount / allCount,
+                    this.total += 1
+                    // console.log
+                    this.statData.push({
+                        times: this.statData.length + 1,
+                        value: this.results[0].number / this.total
                     })
                 }
-
-                let sumHeadCount = 0
-                let sumHeadRate = 0
-                let sumTailCount = 0
-                let sumTailRate = 0
-                for (let result of this.allResult) {
-                    sumHeadCount += result.headCount
-                    sumTailCount += result.tailCount
-                    sumHeadRate += result.headRate
-                    sumTailRate += result.tailRate
+                for (let i = 0; i < this.results.length; i++) {
+                    console.log('rate', this.results[i].number, this.total, this.results[i].number / this.total )
+                    this.results[i].rate = this.results[i].number / this.total
                 }
-                this.avg.headCount = (sumHeadCount / labCount).toFixed(6)
-                this.avg.headRate = (sumHeadRate / labCount).toFixed(6)
-                this.avg.tailRate = (sumTailRate / labCount).toFixed(6)
-                this.avg.tailCount = (sumTailCount / labCount).toFixed(6)
-
-                this.deg = 0
                 let timer = window.setInterval(() => {
                     this.deg += 20
                     if (this.deg > 360 * 3) {
@@ -204,7 +165,7 @@
             updateChart() {
                 let option = {
                     title: {
-                        text: '第一次实验正面朝上的频率',
+                        text: '两次都是正面的频率',
                         x: 'center'
                     },
                     xAxis: {
@@ -219,7 +180,7 @@
                     },
                     tooltip: {
                         trigger: 'axis',
-                        formatter: '总次数： {b0}<br />正面朝上频率：{c0}',
+                        formatter: '总次数： {b0}<br />两次都是正面的频率：{c0}',
                     },
                     series: [{
                         data: this.statData.map(item => item.value),
@@ -244,7 +205,6 @@
 .table {
     margin-left: 16px;
     // margin: 0 auto;
-    margin-bottom: 16px;
     th,
     td {
         padding: 4px 12px;

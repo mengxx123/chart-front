@@ -5,6 +5,8 @@ const Home = resolve => require(['@/views/Home'], resolve)
 const Chart = resolve => require(['@/views/Chart'], resolve)
 
 const Coin = resolve => require(['@/views/Coin'], resolve)
+const CoinEx = resolve => require(['@/views/CoinEx'], resolve)
+const Dice = resolve => require(['@/views/Dice'], resolve)
 const Prime = resolve => require(['@/views/Prime'], resolve)
 
 const ChartDetail = resolve => require(['@/views/ChartDetail'], resolve)
@@ -31,6 +33,14 @@ let routes = [
     {
         path: '/coin',
         component: Coin
+    },
+    {
+        path: '/coin/ex',
+        component: CoinEx
+    },
+    {
+        path: '/dice',
+        component: Dice
     },
     {
         path: '/prime',
