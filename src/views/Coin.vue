@@ -36,8 +36,24 @@
                 <td>{{ avg.tailCount }}</td>
                 <td>{{ avg.tailRate }}</td>
             </tr>
+            <tr>
+                <td>最大值</td>
+                <td>{{ max.headCount }}</td>
+                <td>{{ max.headRate }}</td>
+                <td>{{ max.tailCount }}</td>
+                <td>{{ max.tailRate }}</td>
+            </tr>
+            <tr>
+                <td>最小值</td>
+                <td>{{ min.headCount }}</td>
+                <td>{{ min.headRate }}</td>
+                <td>{{ min.tailCount }}</td>
+                <td>{{ min.tailRate }}</td>
+            </tr>
         </table>
         <div class="chart" id="box"></div>
+        <div class="chart" id="box2"></div>
+        <div class="chart" id="box3"></div>
     </my-page>
 </template>
 
@@ -59,6 +75,18 @@
                     }
                 ],
                 avg: {
+                    headCount: 0,
+                    headRate: 0,
+                    tailCount: 0,
+                    tailRate: 0,
+                },
+                max: {
+                    headCount: 0,
+                    headRate: 0,
+                    tailCount: 0,
+                    tailRate: 0,
+                },
+                min: {
                     headCount: 0,
                     headRate: 0,
                     tailCount: 0,
@@ -109,9 +137,13 @@
                 //     value: 0.56
                 // }
             ]
+            this.statData2 = []
+            this.statData3 = []
             this.total = 0
             this.head = 0
             this.chart = echarts.init(document.getElementById("box"))
+            this.chart2 = echarts.init(document.getElementById("box2"))
+            this.chart3 = echarts.init(document.getElementById("box3"))
             this.updateChart()
             this.debug()
         },
@@ -140,6 +172,7 @@
                 let labCount = this.labCount || 1
                 this.allResult = []
                 this.statData = []
+                this.statData2 = []
 
                 for (let labIdx = 0; labIdx < labCount; labIdx++) {
                     let allCount = 0
@@ -167,6 +200,14 @@
                     //     console.log('rate', this.results[i].number, this.total, this.results[i].number / this.total )
                     //     this.results[i].rate = this.results[i].number / this.total
                     // }
+                    this.statData2.push({
+                        times: this.statData2.length + 1,
+                        value: headCount
+                    })
+                    this.statData3.push({
+                        times: this.statData2.length + 1,
+                        value: headCount / allCount
+                    })
 
                     this.allResult.push({
                         headCount,
@@ -186,10 +227,50 @@
                     sumHeadRate += result.headRate
                     sumTailRate += result.tailRate
                 }
+
+                function max(arr) {
+                    let max = 0 - Number.MAX_SAFE_INTEGER
+                    for (let item of arr) {
+                        if (item > max) {
+                            max = item
+                        }
+                    }
+                    return max
+                }
+                function min(arr) {
+                    let min = Number.MAX_SAFE_INTEGER
+                    for (let item of arr) {
+                        if (item < min) {
+                            min = item
+                        }
+                    }
+                    return min
+                }
+                function avg(arr) {
+                    let sum = 0
+                    for (let item of arr) {
+                        sum += item
+                    }
+                    return sum / arr.length
+                }
+                console.log('max', max([1, 2, 3]))
+                console.log('min', min([1, 2, 3]))
+                console.log('avg', avg([1, 2, 3]))
+                // avg
                 this.avg.headCount = (sumHeadCount / labCount).toFixed(6)
                 this.avg.headRate = (sumHeadRate / labCount).toFixed(6)
                 this.avg.tailRate = (sumTailRate / labCount).toFixed(6)
                 this.avg.tailCount = (sumTailCount / labCount).toFixed(6)
+                // max
+                this.max.headCount = max(this.allResult.map(item => item.headCount))
+                this.max.headRate = max(this.allResult.map(item => item.headRate))
+                this.max.tailRate = max(this.allResult.map(item => item.tailRate))
+                this.max.tailCount = max(this.allResult.map(item => item.tailCount))
+                // min
+                this.min.headCount = min(this.allResult.map(item => item.headCount))
+                this.min.headRate = min(this.allResult.map(item => item.headRate))
+                this.min.tailRate = min(this.allResult.map(item => item.tailRate))
+                this.min.tailCount = min(this.allResult.map(item => item.tailCount))
 
                 this.deg = 0
                 let timer = window.setInterval(() => {
@@ -202,6 +283,11 @@
                 }, 10)
             },
             updateChart() {
+                this.updateChart1()
+                this.updateChart2()
+                this.updateChart3()
+            },
+            updateChart1() {
                 let option = {
                     title: {
                         text: '第一次实验正面朝上的频率',
@@ -235,7 +321,78 @@
                     }]
                 }
                 this.chart.setOption(option)
-            }
+            },
+            updateChart2() {
+                let option = {
+                    title: {
+                        text: '正面朝上的频数',
+                        x: 'center'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: this.statData2.map(item => item.times)
+                    },
+                    yAxis: {
+                        type: 'value',
+                        // min: 0,
+                        // max: 1,
+                        // splitNumber: 10
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: '第 {b0} 次实验<br />正面朝上的频数：{c0}',
+                    },
+                    series: [{
+                        data: this.statData2.map(item => item.value),
+                        type: 'line',
+                        itemStyle : {  
+                            normal : {  
+                                lineStyle:{  
+                                    color:'#4285f4'  
+                                }  
+                            }  
+                        }, 
+                        // color: '#ff0000'
+                    }]
+                }
+                this.chart2.setOption(option)
+            },
+            updateChart3() {
+                let option = {
+                    title: {
+                        text: '正面朝上的频率',
+                        x: 'center'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: this.statData3.map(item => item.times)
+                    },
+                    yAxis: {
+                        type: 'value',
+                        // min: 0,
+                        // max: 1,
+                        // splitNumber: 10
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: '第 {b0} 次实验<br />正面朝上的频率：{c0}',
+                    },
+                    series: [{
+                        data: this.statData3.map(item => item.value),
+                        type: 'line',
+                        itemStyle : {  
+                            normal : {  
+                                lineStyle:{  
+                                    color:'#4285f4'  
+                                }  
+                            }  
+                        }, 
+                        // color: '#ff0000'
+                    }]
+                }
+                this.chart3.setOption(option)
+            },
+
         }
     }
 </script>
